@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta title="color picker html"/>
+<style>
+    #color_target{
+        background-color: lightgrey;
+        float: left;
+        width: 100px;
+        height: 100px;
+    }
+     #color_picker{
+        background-color: lightskyblue;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+         display: grid;
+    }
+    .swatch{
+        color: white;
+        text-align: center;
+        font-size: 1.3em;
+        font-family: sans-serif;
+        padding: 4px;
+        margin: 4px;
+    }
+    .swatch:hover{
+        border: 2px solid white;
+    }
+    </style>
+    </head>
+    <body>
+    <h1>Color Picker</h1>
+        <div id="main">
+        <h3>Color Target</h3>
+            <div id="color_target"></div>
+            <div id="color_picker">
+                 <div id="lightcoral" class="swatch" style="background-color: lightcoral">Red</div>
+                <div id="lightgreen" class="swatch" style="background-color: lightgreen">Green</div>
+               
+                
+            </div>
+        </div>
+    
+    </body>
+    <script>
+        var colors = ['lightcoral','lightgreen','lightblue','orange','yellow','black','pink','blueviolet'];
+         function replaceAll(text_string, text_to_replace, replacement_text){
+            var result = text_string;
+            while(result.search(text_to_replace)!=-1){
+                result = result.replace(text_to_replace,replacement_text);
+            }
+            return result;
+        }
+        function displayColors(){
+            var color_divs = "";
+            var template = "<div id='{color}' class='swatch' style='background-color:{color}'>{color}</div>";
+            for(i in colors){
+                color_divs += replaceAll(template,"{color}",colors[i]);
+            }
+            document.getElementById("color_picker").innerHTML = color_divs;
+        }
+        
+        window.onload = function(){
+            displayColors();
+        }
+        document.getElementById("color_target").onclick = function(){
+            document.getElementById("color_picker").style.display = "inline_block";
+        }
+        document.getElementById("color_picker").onclick = function(event){
+            var color = event.target.innerHTML;
+            color_target.style.backgroundColor = color;
+            
+        }
+    </script>
+</html>
